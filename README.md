@@ -7,7 +7,7 @@ Play multiple preloaded videos just by providing list of video sources.
 
 ## Example
 
-```
+`
     MultiVideoPlayer.asset(
         videoSourceList: videos,
         scrollDirection: Axis.horizontal,
@@ -15,7 +15,7 @@ Play multiple preloaded videos just by providing list of video sources.
         onPageChanged: (videoPlayerController, index) {},
         getCurrentVideoController: (videoPlayerController) {},
     ),
-```
+`
 Use ScrollConfiguration if scrolling not work for WEB.
 
 ```
