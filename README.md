@@ -3,6 +3,8 @@
 
 Play multiple preloaded videos just by providing list of video sources.
 
+![Sample](https://github.com/punit1111/multi_video_player/blob/main/doc/preview.gif)
+
 ## Example
 
 ```
