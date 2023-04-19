@@ -5,29 +5,49 @@ import 'package:video_player/video_player.dart';
 import 'multi_video_item.dart';
 import 'multi_video_model.dart';
 
+/// Stateful widget to display preloaded videos inside page view.
 //ignore: must_be_immutable
 class MultiVideoPlayer extends StatefulWidget {
+  /// enum sourceType values holds the type of source Network, Assets or File
   VideoSource sourceType;
+
+  /// videoSourceList is List or dynamic video sources
   List<dynamic> videoSourceList;
+
+  /// scroll direction of preload page view
   Axis scrollDirection;
+
+  /// number of videos getting initialized defined by preloadPagesCount
   int preloadPagesCount;
+
   VideoPlayerOptions? videoPlayerOptions;
   Future<ClosedCaptionFile>? closedCaptionFile;
   Map<String, String>? httpHeaders;
   VideoFormat? formatHint;
   String? package;
+
+  bool showControlsOverlay;
+  bool showVideoProgressIndicator;
+
+  /// getCurrentVideoController return the current playing video controller
   Function(VideoPlayerController? videoPlayerController)?
       getCurrentVideoController;
+
+  /// onPageChanged calls when swiping through the pages, return
+  /// current playing video controller and index
   Function(VideoPlayerController? videoPlayerController, int index)?
       onPageChanged;
   ScrollPhysics? scrollPhysics;
   bool reverse;
   bool pageSnapping;
+
+  /// [PreloadPageView] controller
   PreloadPageController? pageController;
 
   @override
   State<MultiVideoPlayer> createState() => _MultiVideoPlayerState();
 
+  /// plays videos from list of network video urls
   MultiVideoPlayer.network({
     super.key,
     required this.videoSourceList,
@@ -43,8 +63,11 @@ class MultiVideoPlayer extends StatefulWidget {
     this.pageController,
     this.getCurrentVideoController,
     this.onPageChanged,
+    this.showControlsOverlay = true,
+    this.showVideoProgressIndicator = true,
   }) : sourceType = VideoSource.network;
 
+  /// plays videos from list of video files
   MultiVideoPlayer.file({
     super.key,
     required this.videoSourceList,
@@ -59,8 +82,11 @@ class MultiVideoPlayer extends StatefulWidget {
     this.pageController,
     this.getCurrentVideoController,
     this.onPageChanged,
+    this.showControlsOverlay = true,
+    this.showVideoProgressIndicator = true,
   }) : sourceType = VideoSource.file;
 
+  /// plays videos from list of asset videos
   MultiVideoPlayer.asset({
     super.key,
     required this.videoSourceList,
@@ -75,6 +101,8 @@ class MultiVideoPlayer extends StatefulWidget {
     this.pageController,
     this.getCurrentVideoController,
     this.onPageChanged,
+    this.showControlsOverlay = true,
+    this.showVideoProgressIndicator = true,
   }) : sourceType = VideoSource.asset;
 }
 
@@ -101,6 +129,7 @@ class _MultiVideoPlayerState extends State<MultiVideoPlayer> {
     );
   }
 
+  /// [PreloadPageView] initializes more than one videos at time
   PreloadPageView _pageView() {
     return PreloadPageView.builder(
       itemCount: videosList.length,
@@ -117,6 +146,7 @@ class _MultiVideoPlayerState extends State<MultiVideoPlayer> {
     );
   }
 
+  /// [VideoPlayer] video player combined with [PreloadPageView]
   MultiVideoItem _child(int index) {
     return MultiVideoItem(
       videoSource: videosList[index].videoSource,
@@ -124,6 +154,8 @@ class _MultiVideoPlayerState extends State<MultiVideoPlayer> {
       sourceType: widget.sourceType,
       videoPlayerOptions: widget.videoPlayerOptions,
       closedCaptionFile: widget.closedCaptionFile,
+      showControlsOverlay: widget.showControlsOverlay,
+      showVideoProgressIndicator: widget.showVideoProgressIndicator,
       onInit: (VideoPlayerController videoPlayerController) {
         if (index == MultiVideo.currentIndex) {
           widget.getCurrentVideoController?.call(videoPlayerController);

@@ -16,6 +16,9 @@ class MultiVideoItem extends StatefulWidget {
   Map<String, String>? httpHeaders;
   VideoFormat? formatHint;
   String? package;
+  bool showControlsOverlay;
+  bool showVideoProgressIndicator;
+  bool show = true;
 
   MultiVideoItem({
     super.key,
@@ -28,6 +31,8 @@ class MultiVideoItem extends StatefulWidget {
     this.httpHeaders,
     this.formatHint,
     this.package,
+    this.showControlsOverlay = true,
+    this.showVideoProgressIndicator = true,
     required this.sourceType,
   });
 
@@ -45,6 +50,7 @@ class _MultiVideoItemState extends State<MultiVideoItem> {
     _initializeVideo();
   }
 
+  /// initializes videos
   void _initializeVideo() {
     if (widget.sourceType == VideoSource.network) {
       _controller = VideoPlayerController.network(
@@ -92,9 +98,13 @@ class _MultiVideoItemState extends State<MultiVideoItem> {
                       alignment: Alignment.bottomCenter,
                       children: <Widget>[
                         VideoPlayer(_controller),
-                        _ControlsOverlay(controller: _controller),
-                        VideoProgressIndicator(_controller,
-                            allowScrubbing: true),
+                        widget.showControlsOverlay
+                            ? _ControlsOverlay(controller: _controller)
+                            : const SizedBox.shrink(),
+                        widget.showVideoProgressIndicator
+                            ? VideoProgressIndicator(_controller,
+                                allowScrubbing: true)
+                            : const SizedBox.shrink(),
                       ],
                     ),
                   ),
