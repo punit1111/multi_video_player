@@ -6,3 +6,7 @@ Multi video player providing functionality to play multiple preloaded videos.
 
 * Added parameter showControlsOverlay
 * Added parameter showVideoProgressIndicator
+
+## [0.0.3]
+
+* Added example
