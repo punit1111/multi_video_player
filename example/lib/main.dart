@@ -66,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       body: MultiVideoPlayer.network(
+        height: 400,
+        width: MediaQuery.of(context).size.width,
         videoSourceList: videos,
         scrollDirection: Axis.horizontal,
         preloadPagesCount: 2,

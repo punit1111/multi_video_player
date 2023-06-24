@@ -9,6 +9,8 @@ Play multiple preloaded videos just by providing list of video sources.
 
 ```
     MultiVideoPlayer.asset(
+        height: 400,
+        width: MediaQuery.of(context).size.width,
         videoSourceList: videos,
         scrollDirection: Axis.horizontal,
         preloadPagesCount: 2,
@@ -27,6 +29,8 @@ Use ScrollConfiguration if scrolling not work for WEB.
           },
         ),
         child: MultiVideoPlayer.asset(
+          height: 400,
+          width: MediaQuery.of(context).size.width,
           videoSourceList: videos,
           scrollDirection: Axis.horizontal,
           preloadPagesCount: 2,

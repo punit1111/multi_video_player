@@ -132,10 +132,10 @@ packages:
     dependency: "direct main"
     description:
       name: multi_video_player
-      sha256: "315db8c751ffe017018c9ed24fee1d6dbaed7b8f71ec6e0dcf1b6dcd7add3712"
+      sha256: e1214b83cac48c0b60107e07d5fd451a0c20beccdb3d02b49c88a38b922b22b7
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.3"
+    version: "0.0.4"
   path:
     dependency: transitive
     description:
@@ -156,10 +156,10 @@ packages:
     dependency: transitive
     description:
       name: preload_page_view
-      sha256: "698e4d6eb1fa3489768c9d2d8c8322ed686015af633d04cc537c57e38566834a"
+      sha256: "488a10c158c5c2e9ba9d77e5dbc09b1e49e37a20df2301e5ba02992eac802b7a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.6"
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
