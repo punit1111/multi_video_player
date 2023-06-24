@@ -1,6 +1,6 @@
 name: multi_video_player
 description: Flutter package for displaying multiple preloaded videos on Android, iOS, and web.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/punit1111/multi_video_player
 
 environment:
