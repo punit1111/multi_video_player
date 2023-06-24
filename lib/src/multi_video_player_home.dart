@@ -29,6 +29,9 @@ class MultiVideoPlayer extends StatefulWidget {
   bool showControlsOverlay;
   bool showVideoProgressIndicator;
 
+  double height;
+  double width;
+
   /// getCurrentVideoController return the current playing video controller
   Function(VideoPlayerController? videoPlayerController)?
       getCurrentVideoController;
@@ -51,6 +54,8 @@ class MultiVideoPlayer extends StatefulWidget {
   MultiVideoPlayer.network({
     super.key,
     required this.videoSourceList,
+    required this.height,
+    required this.width,
     this.scrollDirection = Axis.horizontal,
     this.preloadPagesCount = 1,
     this.videoPlayerOptions,
@@ -71,6 +76,8 @@ class MultiVideoPlayer extends StatefulWidget {
   MultiVideoPlayer.file({
     super.key,
     required this.videoSourceList,
+    required this.height,
+    required this.width,
     this.scrollDirection = Axis.horizontal,
     this.preloadPagesCount = 1,
     this.videoPlayerOptions,
@@ -90,6 +97,8 @@ class MultiVideoPlayer extends StatefulWidget {
   MultiVideoPlayer.asset({
     super.key,
     required this.videoSourceList,
+    required this.height,
+    required this.width,
     this.scrollDirection = Axis.horizontal,
     this.preloadPagesCount = 1,
     this.videoPlayerOptions,
@@ -119,13 +128,17 @@ class _MultiVideoPlayerState extends State<MultiVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: videosList.isEmpty
-          ? const Center(child: Icon(Icons.error))
-          : isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : _pageView(),
+      body: SizedBox(
+        height: widget.height,
+        width: widget.width,
+        child: videosList.isEmpty
+            ? const Center(child: Icon(Icons.error))
+            : isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : _pageView(),
+      ),
     );
   }
 
